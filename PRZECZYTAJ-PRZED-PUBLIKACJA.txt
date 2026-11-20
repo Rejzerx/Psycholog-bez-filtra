@@ -1,0 +1,25 @@
+PSYCHOLOG BEZ FILTRA — KONTROLA PROJEKTU, 20.11.2026
+
+WYKONANE
+- Dodano /polityka-prywatnosci/ i linki w stopkach.
+- Dodano assets/og-psycholog-bez-filtra.jpg (1200x630) i meta og:image, twitter:card.
+- Zachowano GA4 G-PMX12ZB964 i mechanizm zgody przed ładowaniem analityki.
+- Zachowano konfigurację Pages CMS, artykuły Markdown i budowanie na Netlify.
+- Dodano podstawowe nagłówki bezpieczeństwa Netlify.
+- Lokalny build: 13 stron, w tym 3 artykuły; 0 błędów lokalnych ścieżek w teście automatycznym.
+
+KONIECZNE PRZED OFICJALNĄ PUBLIKACJĄ
+1. Polityka prywatności to PROJEKT. Uzupełnij pełne dane administratora i e-mail do spraw danych, sprawdź informacje o hostingu, okresach retencji i ewentualnych transferach; skonsultuj prawnie.
+2. Nie zweryfikowano historycznych URL starej witryny. Pobierz listę z Google Search Console i dodaj mapę przekierowań 301 do _redirects.
+3. Sprawdź wszystkie strony w rzeczywistej przeglądarce na adresie testowym HTTPS (Safari, Chrome, telefon).
+4. Sprawdź PageSpeed Insights i Core Web Vitals po publikacji testowej. Test lokalny nie dowodzi wydajności.
+5. Sprawdź Analytics w Realtime/DebugView po zgodzie oraz zdarzenie booking_click. Nie mierz faktycznych rezerwacji na ZnanyLekarz bez integracji z tym serwisem.
+6. Podłącz GitHub → Netlify → Pages CMS i przetestuj utworzenie artykułu.
+7. Podłącz domenę, zweryfikuj HTTPS i przekierowania, wyślij sitemap.xml do Search Console.
+8. Wysyłanie formularza e-booka wymaga osobnej usługi i nie jest tu uruchomione.
+
+WAŻNE DLA IPHONE'A
+Wgrywanie pojedynczych plików przez mobilny formularz GitHub może utracić strukturę katalogów i ukryty .pages.yml. Zalecane użycie komputera / klienta Git albo narzędzia potrafiącego wysłać cały katalog. NIE wrzucaj ZIP-a jako jedynego pliku repozytorium.
+
+UWAGA
+Wynik kontroli oznacza poprawność podstawowych plików i linków w lokalnym buildzie, nie gwarancję indeksacji, pozycji Google, zgodności prawnej ani bezbłędnego działania w Safari.
