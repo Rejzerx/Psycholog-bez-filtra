@@ -1,0 +1,41 @@
+
+media:
+  input: media
+  output: /media
+
+content:
+  - name: articles
+    label: Artykuły
+    type: collection
+    path: _posts
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    view:
+      fields: [title, date, published]
+      primary: title
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Tytuł artykułu
+        type: string
+        required: true
+      - name: date
+        label: Data publikacji
+        type: date
+        required: true
+      - name: published
+        label: Opublikowany
+        type: boolean
+        default: true
+      - name: description
+        label: Krótki opis
+        type: text
+      - name: image
+        label: Zdjęcie główne
+        type: image
+      - name: body
+        label: Treść artykułu
+        type: rich-text
