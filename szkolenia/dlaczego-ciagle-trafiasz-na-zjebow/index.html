@@ -52,6 +52,99 @@ img{max-width:100%;height:auto}
 .herogrid>*{min-width:0}
 @media(max-width:760px){.herogrid{display:grid;grid-template-columns:minmax(0,1fr);gap:24px}.heroimg{max-width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}.wrap{width:100%;padding-inline:20px}.navlinks{flex-wrap:wrap;gap:8px}.navlinks a{font-size:.75rem}.hero{padding:34px 0 48px}}
 </style>
+<!-- Meta Pixel: aktywowany dopiero po zgodzie na marketingowe cookies. -->
+<script>
+(function () {
+  'use strict';
+  var PIXEL_ID = '1707241853831486';
+  var STORAGE_KEY = 'pbf_meta_marketing_consent_v1';
+  var started = false;
+
+  function readConsent() {
+    try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
+  }
+  function saveConsent(value) {
+    try { localStorage.setItem(STORAGE_KEY, value); } catch (e) { /* Brak dostępu do storage. */ }
+  }
+  function startPixel() {
+    if (started) return;
+    started = true;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){
+    n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+    s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', PIXEL_ID);
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+      content_name: 'Dlaczego ciągle trafiasz na zjebów? — szkolenie',
+      content_category: 'Szkolenie online',
+      content_type: 'product',
+      content_ids: ['szkolenie-dlaczego-ciagle-trafiasz-na-zjebow'],
+      currency: 'PLN', value: 99
+    });
+  }
+  function removeBanner() {
+    var banner = document.getElementById('pbf-meta-consent');
+    if (banner) banner.remove();
+  }
+  function choose(value) {
+    saveConsent(value);
+    removeBanner();
+    if (value === 'yes') startPixel();
+  }
+  function showBanner() {
+    if (document.getElementById('pbf-meta-consent')) return;
+    var el = document.createElement('div');
+    el.id = 'pbf-meta-consent';
+    el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-label', 'Zgoda na pomiar reklam');
+    el.style.cssText = 'position:fixed;z-index:2147483000;left:12px;right:12px;bottom:86px;max-width:550px;margin:0 auto;background:#fffaf5;color:#22201e;border:1px solid #e6dcd3;border-radius:15px;box-shadow:0 12px 35px #0003;padding:17px;font:14px/1.45 Arial,Helvetica,sans-serif';
+    var title = document.createElement('strong');
+    title.textContent = 'Pomiar skuteczności reklam';
+    title.style.cssText = 'display:block;font-size:16px;margin-bottom:6px';
+    var para = document.createElement('p');
+    para.textContent = 'Za Twoją zgodą użyjemy Piksela Meta do pomiaru odwiedzin szkolenia i kliknięć prowadzących do biletów. Odmowa nie blokuje strony ani zakupu.';
+    para.style.cssText = 'margin:0 0 12px';
+    var actions = document.createElement('div');
+    actions.style.cssText = 'display:flex;gap:8px;flex-wrap:wrap';
+    function button(text, decision, primary) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = text;
+      b.style.cssText = 'flex:1;min-width:120px;cursor:pointer;padding:10px 12px;border-radius:9px;font-weight:bold;border:1px solid #a93c49;background:' + (primary ? '#a93c49;color:#fff' : '#fff;color:#22201e');
+      b.addEventListener('click', function () { choose(decision); });
+      return b;
+    }
+    actions.appendChild(button('Odrzucam', 'no', false));
+    actions.appendChild(button('Akceptuję', 'yes', true));
+    el.appendChild(title);el.appendChild(para);el.appendChild(actions);
+    document.body.appendChild(el);
+  }
+  function boot() {
+    var choice = readConsent();
+    if (choice === 'yes') startPixel();
+    else if (choice !== 'no') showBanner();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+  // Kliknięcie w link Evenea oznacza przejście do systemu biletowego, nie zakup.
+  document.addEventListener('click', function (event) {
+    if (!started || typeof window.fbq !== 'function') return;
+    var node = event.target;
+    var link = node && node.closest ? node.closest('a[href]') : null;
+    if (!link) return;
+    var url;
+    try { url = new URL(link.href, location.href); } catch (e) { return; }
+    if (url.hostname !== 'evenea.pl' && url.hostname !== 'app.evenea.pl') return;
+    fbq('trackCustom', 'TicketClick', {
+      content_name: 'Dlaczego ciągle trafiasz na zjebów? — szkolenie',
+      destination: 'Evenea', currency: 'PLN', value: 99
+    });
+  }, true);
+})();
+</script>
 <!-- Istniejąca konfiguracja Google Analytics z witryny głównej -->
 <script src="/analytics.js" defer></script>
 </head><body id="course-detail">
