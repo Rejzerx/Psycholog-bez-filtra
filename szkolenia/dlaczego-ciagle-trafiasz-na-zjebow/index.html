@@ -289,7 +289,7 @@ if(CHECKOUT_URL){const btn=document.getElementById('checkout-button');btn.href=C
 </script>
 
 <script>
-/* Film osadzony na stronie; nie otwieramy YouTube w nowej karcie. */
+/* Streamable osadzony na stronie; nie otwieramy zewnętrznej karty. */
 (function(){
   var play=document.getElementById('warsztat-video-launch');
   var holder=document.getElementById('warsztat-video');
@@ -297,8 +297,8 @@ if(CHECKOUT_URL){const btn=document.getElementById('checkout-button');btn.href=C
   play.addEventListener('click',function(){
     var video=document.createElement('iframe');
     video.title='Daniel Kampa — film o warsztacie';
-    video.src='https://www.youtube.com/embed/UTBjGpgrmng?autoplay=1&playsinline=1&rel=0';
-    video.setAttribute('allow','accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share');
+    video.src='https://streamable.com/e/v2qait?autoplay=1&hd=1&loop=0';
+    video.setAttribute('allow','autoplay; fullscreen; picture-in-picture; encrypted-media');
     video.setAttribute('allowfullscreen','');
     video.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
     video.setAttribute('loading','eager');
