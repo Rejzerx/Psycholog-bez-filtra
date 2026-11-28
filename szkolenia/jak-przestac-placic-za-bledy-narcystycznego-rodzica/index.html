@@ -319,7 +319,11 @@ body.pbw-checkout-open{overflow:hidden!important}
     fbq('init',PIXEL_ID);
     fbq('track','PageView');
     /* Nie wysyłamy nazwy warsztatu ani identyfikatora wskazującego temat psychologiczny. */
-    var analytics=document.createElement('script');analytics.src='/analytics.js';analytics.defer=true;document.head.appendChild(analytics);
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+    window.gtag('js',new Date());
+    window.gtag('config','G-PMX12ZB964',{allow_google_signals:false,allow_ad_personalization_signals:false});
+    var analytics=document.createElement('script');analytics.src='https://www.googletagmanager.com/gtag/js?id=G-PMX12ZB964';analytics.async=true;document.head.appendChild(analytics);
   }
   try{if(localStorage.getItem(key)!=='no')enableOptionalTracking();}catch(_){}
 })();
